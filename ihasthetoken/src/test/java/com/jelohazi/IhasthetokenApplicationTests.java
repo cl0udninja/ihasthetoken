@@ -1,4 +1,4 @@
-package com.vmware;
+package com.jelohazi;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
