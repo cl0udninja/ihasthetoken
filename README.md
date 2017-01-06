@@ -1,4 +1,4 @@
-IHasTheToken
+![](ihasthetoken_ui/src/images/tokens.png) IHasTheToken
 ============
 It's a simple application to manage a token queue. It's based on the Clarity Design System and Spring Boot.
 
@@ -29,3 +29,5 @@ git clone git@github.com:jelohazi/ihasthetoken.git
 cd ihasthetoken
 ./make.sh
 ```
+
+![](ihasthetoken_ui/src/images/fry.jpg)
