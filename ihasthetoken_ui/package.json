@@ -1,7 +1,7 @@
 {
-    "name": "clarity-seed",
-    "version": "0.8.0",
-    "description": "Angular-CLI starter for a Clarity project",
+    "name": "ihasthetoken",
+    "version": "0.0.1",
+    "description": "IHasTheToken UI App",
     "angular-cli": {},
     "scripts": {
         "start": "ng serve",
@@ -55,6 +55,7 @@
         "tslint": "^4.1.1",
         "typescript": "~2.0.3",
         "typings": "^1.4.0",
+        "yarn": "^0.18.1",
         "webdriver-manager": "10.2.5"
     }
 }
