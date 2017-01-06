@@ -1,0 +1,25 @@
+.content {
+    text-align: center;
+    width: 100%;
+}
+
+h2 {
+    margin-bottom: 50px;
+    border-bottom: 1px solid #ccc;
+    button {
+        float: right;
+    }
+}
+
+.table {
+    width: 60%;
+    margin: auto;
+}
+
+.label.label-success {
+    cursor: pointer;
+}
+
+.select {
+    width: 100%;
+}

@@ -1,0 +1,74 @@
+<div class="alert alert-danger" *ngIf="tokenError">
+    <button type="button" class="close" aria-label="Close">
+              <span aria-hidden="true" (click)="tokenError=null">&times;</span>
+          </button>
+    <div class="alert-item">
+        <div class="alert-text">
+            {{tokenError}}
+        </div>
+    </div>
+</div>
+
+<h2>Token Queue <button type="submit" class="btn btn-prmiary" (click)="getInLineDialog=true">Get In Line</button></h2>
+<div class="content">
+    <div class="spinner" *ngIf="!initialized"></div>
+    <div *ngIf="initialized">
+        <img src="images/fry.jpg" class="no-tokens" *ngIf="!hasTokens()">
+        <div *ngIf="hasTokens()">
+            <table class="table">
+                <tr>
+                    <th>Created</th>
+                    <th>Owner</th>
+                    <th>Status</th>
+                </tr>
+                <tr *ngFor="let token of tokens">
+                    <td>{{token.created}}</td>
+                    <td>{{token.userName}}</td>
+                    <td><span class="label {{getLabelClass(token)}}" (click)="openMarkDone(token)">{{token.status}}</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal" *ngIf="markDoneDialog">
+    <div class="modal-dialog modal-sm" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Are you done with the token?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" type="button" (click)="noDoneToken()">No</button>
+                <button class="btn btn-primary" type="button" (click)="yesDoneToken()">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-lg" *ngIf="getInLineDialog">
+    <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
+        <form (ngSubmit)="getInLine()" #getInLineForm="ngForm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Get in line</h3>
+                </div>
+                <div class="modal-body">
+                    <section class="form-block">
+                        <div class="form-group">
+                            <label for="name">Who are you?</label>
+                            <div class="select">
+                                <select id="name" required [(ngModel)]="userToGetInLine.id" name="id">
+                            <option *ngFor="let user of userArray" placeholder="Select user..." [value]="user.id">{{user.name}}</option>
+                          </select>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline" type="button" (click)="cancelGetInLine()">Cancel</button>
+                    <button class="btn btn-primary" type="submit" [disabled]="!getInLineForm.form.valid">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-backdrop" aria-hidden="true" *ngIf="markDoneDialog || getInLineDialog"></div>

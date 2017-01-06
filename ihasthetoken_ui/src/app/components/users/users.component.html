@@ -1,0 +1,62 @@
+<div class="alert alert-danger" *ngIf="userError">
+    <button type="button" class="close" aria-label="Close">
+              <span aria-hidden="true" (click)="userError=null">&times;</span>
+          </button>
+    <div class="alert-item">
+        <div class="alert-text">
+            {{userError}}
+        </div>
+    </div>
+</div>
+
+<h2>User Management <button type="submit" class="btn btn-prmiary" (click)="signUpDialog=true">Sign up</button></h2>
+<div class="content">
+    <div class="spinner" *ngIf="!initialized"></div>
+    <div *ngIf="initialized">
+        <table class="table" *ngIf="users">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let user of users">
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td><a (click)="editUser(user)"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+            </tr>
+        </table>
+        <span *ngIf="!users">There are no users in the system. Sign up!</span>
+    </div>
+</div>
+
+<div class="modal modal-lg" *ngIf="signUpDialog || editDialog">
+    <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
+        <form (ngSubmit)="signUp()" #signUpForm="ngForm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" *ngIf="signUpDialog">Sign up</h3>
+                    <h3 class="modal-title" *ngIf="editDialog">Edit user</h3>
+                </div>
+                <div class="modal-body">
+                    <section class="form-block">
+                        <div class="form-group">
+                            <label for="name">Your name</label>
+                            <input type="text" id="name" placeholder="Enter your name" size="45" required [(ngModel)]="newUser.name" name="name" minlength="1">
+                        </div>
+                    </section>
+                    <section class="form-block">
+                        <div class="form-group">
+                            <label for="name">Your e-mail</label>
+                            <input type="text" id="email" placeholder="Enter your email address" size="45" required [(ngModel)]="newUser.email" name="email" minlength="1">
+                        </div>
+                    </section>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline" type="button" (click)="cancelSignUp()">Cancel</button>
+                    <button class="btn btn-primary" type="submit" [disabled]="!signUpForm.form.valid">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-backdrop" aria-hidden="true" *ngIf="signUpDialog || editDialog"></div>
